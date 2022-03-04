@@ -1,0 +1,333 @@
+/**
+ * importer.less
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from LESS to CSS.  Unlike CSS files, LESS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * For more information see:
+ *   https://sailsjs.com/anatomy/assets/styles/importer-less
+ */
+
+
+// For example:
+//
+// @import 'variables/colors.less';
+// @import 'mixins/foo.less';
+// @import 'mixins/bar.less';
+// @import 'mixins/baz.less';
+//
+// @import 'mixins-and-variables.less';
+// @import 'pages/login.less';
+// @import 'pages/signup.less';
+//
+// etc.
+
+/*! This special bang (!) comment is here to trick the `hash` Grunt task into working out-of-the-box, without any real CSS. You can delete this once you've imported ≥1 .less file as demonstrated above. */
+
+body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
+
+.navbar {
+  height: 50px;
+  width: 100%;
+  background: #1d4289;
+  background-image: linear-gradient(to right, #1d4289, #00b74f);
+}
+
+.nav-item {
+  color: #fff;
+  font-weight: 400;
+}
+
+.vi-header {
+  box-sizing: border-box;
+}
+
+.vi-left-title {
+  width: auto;
+  font-size: 14px;
+  background-color: #f58220;
+  background-image: linear-gradient(to right, #1d4289, #26ae4d);
+  padding: 10px 20px 8px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.vi-left-title:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 16.75px solid transparent;
+  border-left: 15px solid #26ae4d;
+  border-bottom: 16.75px solid transparent;
+  border-right: 0 solid transparent;
+  position: absolute;
+  top: 0;
+  right: -15px;
+}
+
+.main {
+  margin: 22px 15px;
+  width: 98%;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.pull-right {
+  margin-right: 0 !important;
+  margin-left: 10px;
+  float: right !important;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.btn {
+  padding: 2px 8px !important;
+}
+
+.svg-pull {
+  font-size: 24px;
+  margin-bottom: 0px !important;
+}
+
+.btn-primary {
+  background-color: #26ae4d !important;
+  border-color: #26ae4d !important;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #26ae4d !important;
+  border-color: #26ae4d !important;
+}
+
+
+.fa-sync-alt:before {
+  color: #26ae4d !important;
+  content: "\f2f1";
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #e10600 !important;
+  border-color: #e10600 !important;
+}
+
+// body
+
+.head {
+  background: #e7e7e7 !important;
+  color: #000 !important;
+  font-weight: 700;
+  font-size: 12px !important;
+}
+
+.panel-body {
+  padding: 12px;
+}
+
+.wordwrap {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ReactTable .rt-thead .head .rt-th {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+  width: 900px;
+  margin: 30px auto;
+  position: relative;
+  z-index: 100;
+  animation: modalFadeIn ease 0.4s;
+}
+
+.modal-lg {
+  width: 900px;
+}
+
+.modal-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+
+.modal-header .title-content {
+  padding: 5px !important;
+  border-radius: 5px 5px 0 0 !important;
+}
+
+.title-content {
+  width: 900px;
+  padding: 6px;
+  font-size: 16px;
+  background-color: #1d4289;
+  background-image: linear-gradient(to right, #1d4289, #26ae4d);
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.add-info-account p,
+.btn-login-flex,
+.content-left,
+.img-cmt,
+.mutilangue,
+.number-time-countdown,
+.time-countdown h5,
+.title-content {
+  text-align: center;
+}
+
+.modal-header {
+  padding: 0 !important;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.highlight {
+  font-size: 12px;
+  color: red;
+  margin: 12px 0;
+  font-weight: 500;
+}
+
+.Select-control {
+  background-color: #fff;
+  border-color: #d9d9d9 #ccc #b3b3b3;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.add-info-account .react-datepicker-wrapper .form-control {
+  width: 100%;
+}
+
+.react-datepicker-wrapper .form-control {
+  display: inline;
+}
+
+.add-info-account .react-datepicker__input-container {
+  position: inherit;
+  display: inline;
+  width: auto;
+}
+
+.pull-right {
+  margin-right: 0 !important;
+  float: right !important;
+}
+
+.panel-body .add-info-account .col-md-12,
+.panel-body .add-info-account1 .col-md-12 {
+  padding-left: 20px !important;
+}
+
+.react-datepicker-wrapper {
+  display: inline-block;
+  width: 100%;
+}
+
+.col-md-12 {
+  margin-bottom: 5px !important;
+}
+
+.Select-placeholder,
+.Select--single>.Select-control .Select-value {
+  bottom: 0;
+  color: #aaa;
+  left: 0;
+  line-height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.add-info-account .form-control {
+  height: 34px;
+  font-size: 12px;
+}
+
+.modal-header .title-content .close {
+  opacity: .7 !important;
+  color: #fff !important;
+  font-size: 20px;
+}
+
+.modal-body {
+  padding: 0 !important;
+}
+
+@keyframes modalFadeIn {
+  from {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+.modal__container {
+    display: none;
+}
+.show-on {
+    display: block !important;
+}
+
+.Select-menu-one , .Select-menu-two {
+  display: none;
+}
+.show {
+  display: block !important;
+}

@@ -1,0 +1,58 @@
+<!--
+This is your default homepage.
+For more information, see:
+• https://sailsjs.com/documentation/concepts/views
+• https://sailsjs.com/documentation/concepts/routes
+-->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+<script type="text/javascript">
+  setTimeout(function sunrise() {
+    document.getElementsByClassName('header')[0].style.backgroundColor = '#118798';
+  }, 0);
+</script>
+
+<div></div>
+
+<script>
+  const modal = document.querySelector('.modal__container');
+  const modalOverlay = document.querySelector('.modal__overlay');
+  const selectOne = document.querySelector('.Select-one');
+  const selectTwo = document.querySelector('.Select-two');
+
+
+  function showAddModal() {
+    modal.classList.add("show-on");
+  }
+  function closeModal() {
+    modal.classList.remove("show-on");
+  }
+  modalOverlay.addEventListener('click', closeModal)
+
+  // Select event.
+  selectOne.addEventListener('click', () => {
+    document.querySelector('.Select-menu-one ').classList.add("show");
+  })
+  document.addEventListener('click', function (event) {
+    var isClickInside = selectOne.contains(event.target);
+    if (isClickInside) {
+      console.log('You clicked inside')
+    }
+    else {
+      document.querySelector('.Select-menu-one ').classList.remove("show");
+    }
+  });
+
+  selectTwo.addEventListener('click', () => {
+    document.querySelector('.Select-menu-two ').classList.add("show");
+  })
+  document.addEventListener('click', function (event) {
+    var isClickInside = selectTwo.contains(event.target);
+    if (isClickInside) {
+      console.log('You clicked inside')
+    }
+    else {
+      document.querySelector('.Select-menu-two ').classList.remove("show");
+    }
+  });
+
+</script>
