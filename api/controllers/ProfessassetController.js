@@ -36,13 +36,14 @@ module.exports = {
         axios({
             method: 'post',
             url: 'https://fcbond.fss.com.vn/asset/mt_professasset',
-            data: {req},
+            data: req.body,
             headers: {
                 Authorization: 'Basic YWRtaW46RnNzY2JkQDEyMw==',
             }
         })
-            .then((value) => {
-                return res.status(200);
+            .then((value) => {    
+                console.log(value.data);
+                return res.send(value.data);
             })
             .catch((error) => {
                 console.log(error); 

@@ -29,6 +29,14 @@ module.exports.routes = {
       allowCredentials: false
     }
   },
+  'Post /asset/deleteProfessasset': {
+    controller: 'ProfessassetController',
+    action: 'deleteProfessasset',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
+  },
   'GET /asset/getlistassetcode': {
     controller: 'ProfessassetController',
     action: 'getlistassetcode',
