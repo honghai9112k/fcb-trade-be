@@ -37,7 +37,7 @@ module.exports.routes = {
       allowCredentials: false
     }
   },
-  'GET /asset/getlistassetcode': {
+  'POST /asset/getlistassetcode': {
     controller: 'ProfessassetController',
     action: 'getlistassetcode',
     cors: {

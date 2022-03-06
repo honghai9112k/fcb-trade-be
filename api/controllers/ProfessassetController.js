@@ -27,7 +27,7 @@ module.exports = {
                 return res.send(value.data);
             })
             .catch((error) => {
-                console.log(error); 
+                console.log(error);
             })
 
     },
@@ -41,17 +41,33 @@ module.exports = {
                 Authorization: 'Basic YWRtaW46RnNzY2JkQDEyMw==',
             }
         })
-            .then((value) => {    
+            .then((value) => {
                 console.log(value.data);
                 return res.send(value.data);
             })
             .catch((error) => {
-                console.log(error); 
+                console.log(error);
             })
     },
 
     getlistassetcode: async (req, res) => {
-        return res.send("Helo");
+        axios({
+            method: 'post',
+            url: 'https://fcbond.fss.com.vn/asset/getlistassetcode',
+            data: {
+                "p_language": "vie",
+                "OBJNAME": "PROFESSASSET"
+            },
+            headers: {
+                Authorization: 'Basic YWRtaW46RnNzY2JkQDEyMw==',
+            }
+        })
+            .then((value) => {
+                return res.send(value.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     },
     mt_professasset: async (req, res) => {
         return res.json({
