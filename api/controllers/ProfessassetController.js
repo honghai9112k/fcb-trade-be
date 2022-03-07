@@ -32,7 +32,7 @@ module.exports = {
 
     },
 
-    deleteProfessasset: async (req, res) => {
+    cudProfessasset: async (req, res) => {
         axios({
             method: 'post',
             url: 'https://fcbond.fss.com.vn/asset/mt_professasset',
@@ -68,16 +68,6 @@ module.exports = {
             .catch((error) => {
                 console.log(error);
             })
-    },
-    mt_professasset: async (req, res) => {
-        return res.json({
-            "EC": 0,
-            "EM": "Thành công",
-            "DT": {
-                "p_err_code": "0",
-                "p_err_param": null
-            }
-        })
     },
 };
 

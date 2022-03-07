@@ -47,7 +47,7 @@ module.exports.routes = {
   },
   'POST /asset/mt_professasset': {
     controller: 'ProfessassetController',
-    action: 'mt_professasset',
+    action: 'cudProfessasset',
     cors: {
       allowOrigins: ['http://localhost:3000'],
       allowCredentials: false
