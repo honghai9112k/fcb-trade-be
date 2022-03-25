@@ -9,6 +9,7 @@
  * https://sailsjs.com/config/sockets
  */
 
+
 module.exports.sockets = {
 
   /***************************************************************************
@@ -77,6 +78,5 @@ module.exports.sockets = {
   ***************************************************************************/
 
   // grant3rdPartyCookie: true,
-
 
 };

@@ -18,5 +18,11 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-
+  '*': ['isAuthorized'], // Everything resctricted here
+  'UserController': { // Name of your controller
+    'signIn': true // We dont need authorization here, allowing public access
+  },
+  'ProfessassetController': {
+   
+  },
 };

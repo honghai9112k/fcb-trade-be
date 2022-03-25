@@ -52,6 +52,26 @@ module.exports.routes = {
       allowOrigins: ['http://localhost:3000'],
       allowCredentials: false
     }
+  },
+  'POST /signin': {
+    controller: 'UserController',
+    action: 'signIn'
+  },
+  'POST /signup': {
+    controller: 'UserController',
+    action: 'signup',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
+  },
+  'POST /secret': {
+    controller: 'UserController',
+    action: 'secret',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
   }
 
   /***************************************************************************

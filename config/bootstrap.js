@@ -26,5 +26,6 @@ module.exports.bootstrap = async function() {
   //   // etc.
   // ]);
   // ```
-
+  process.env.ACCESS_TOKEN_SECRET = "accessToken";
+  process.env.REFRESH_TOKEN_SECRET = "refreshToken";
 };

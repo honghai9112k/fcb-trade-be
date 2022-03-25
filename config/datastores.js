@@ -52,6 +52,12 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
 
   },
-
+  cache: {
+    adapter: 'sails-redis',
+    url: 'redis://localhost:6379',
+  
+    // Other available low-level options can also be configured here.
+    // (see below for more information)
+  },
 
 };

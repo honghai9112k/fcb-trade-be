@@ -51,6 +51,7 @@ module.exports = {
     },
 
     getlistassetcode: async (req, res) => {
+        console.log(req.headers);
         axios({
             method: 'post',
             url: 'https://fcbond.fss.com.vn/asset/getlistassetcode',
