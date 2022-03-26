@@ -29,7 +29,10 @@ const signAccessToken = async (email) => {
 const verifyAccessToken = async (req, res, next) => {
 
   if (!req.headers['authorization']) {
-    return next(createError.Unauthorized());
+    return res.json({
+      status: 500,
+      message: 'Bạn chưa đăng nhập.[Unauthorized]'
+    })
   }
 
   const authHeader = req.headers['authorization']
@@ -67,7 +70,7 @@ const signRefreshToken = async (email) => {
     const payload = { email }
     const secret = process.env.REFRESH_TOKEN_SECRET;
     const options = {
-      expiresIn: '1y' // 10m 10s
+      expiresIn: '1d' // 10m 10s
     }
     JWT.sign(payload, secret, options, (err, token) => {
       if (err) reject(err);

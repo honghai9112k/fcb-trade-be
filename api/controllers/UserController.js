@@ -10,9 +10,15 @@ module.exports = {
         const { email, password } = req.body;
 
         if (email !== 'hai@gmail.com')
-            return res.status(403).json({ error: { message: 'Email is already in user.' } })
+            return res.json({
+                status: 403,
+                message: 'Email is already in user.'
+            });
         if (password !== '123456') {
-            return res.status(403).json({ error: { message: 'Password not true.' } })
+            return res.json({
+                status: 403,
+                message: 'Password not true.'
+            });
         }
         // Encode a token
         const accessToken = await jwToken.signAccessToken(email)
@@ -24,7 +30,12 @@ module.exports = {
         res.setHeader('RefreshToken', refreshToken)
         res.setHeader('Authorization', accessToken)
 
-        return res.status(201).json({ success: true });
+        return res.json({
+            status: 200,
+            message: 'Success',
+            authorization: accessToken,
+            refreshToken: refreshToken,
+        });
     },
     refreshToken: async (req, res) => {
         try {
@@ -61,6 +72,7 @@ module.exports = {
                 return res.status(400).json({ 'err': 'Delete fail.' });
             }
             res.json({
+                status: 200,
                 message: 'LogOut!'
             })
         } catch (error) {
