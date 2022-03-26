@@ -17,5 +17,11 @@ const addRedis = async (key, value, expiresIn) => {
         await (util.promisify(db.setex).bind(db))(key, ttlInSeconds, JSON.stringify(value));
     });
 }
-
-module.exports = { getValueByKeyRedis, addRedis };
+const deleteRedis = async (key) => {
+    var value = await sails.getDatastore('cache').leaseConnection(async (db) => {
+        const check = await (util.promisify(db.del).bind(db))(key);
+        return check;
+    })
+    
+}
+module.exports = { getValueByKeyRedis, addRedis, deleteRedis };

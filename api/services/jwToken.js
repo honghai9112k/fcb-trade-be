@@ -1,7 +1,8 @@
 'use strict';
 
 const JWT = require('jsonwebtoken');
-const createError = require('http-errors')
+const createError = require('http-errors');
+const { addRedis } = require('./redis');
 
 // Generates a token from supplied payload
 const signAccessToken = async (email) => {
@@ -9,7 +10,7 @@ const signAccessToken = async (email) => {
     const payload = { email }
     const secret = process.env.ACCESS_TOKEN_SECRET;
     const options = {
-      expiresIn: '1h' // 10m 10s
+      expiresIn: '10m' // 10m 10s
     }
     JWT.sign(payload, secret, options, (err, token) => {
       if (err) reject(err);
@@ -26,10 +27,11 @@ const signAccessToken = async (email) => {
 
 // Verifies token on a request
 const verifyAccessToken = async (req, res, next) => {
-  
+
   if (!req.headers['authorization']) {
     return next(createError.Unauthorized());
   }
+
   const authHeader = req.headers['authorization']
   const bearerToken = authHeader.split(' ');
   const token = bearerToken[1];
@@ -39,7 +41,19 @@ const verifyAccessToken = async (req, res, next) => {
     process.env.ACCESS_TOKEN_SECRET, // Same token we used to sign
     (err, payload) => {
       if (err) {
-        return next(createError.Unauthorized());
+        if (err.name === 'JsonWebTokenError') {
+          // return next(createError.Unauthorized());
+          var err = createError.Unauthorized()
+          res.json({
+            status: err.status || 500,
+            message: err.message
+          })
+        }
+        // return next(createError.Unauthorized(err.message));
+        res.json({
+          status: err.status || 500,
+          message: err.message
+        })
       }
       req.payload = payload;
       next();
@@ -60,11 +74,26 @@ const signRefreshToken = async (email) => {
       resolve(token);
     })
   })
-  // return JWT.sign({
-  //   iss: 'HongHai',
-  //   sub: payload,
-  //   iat: new Date().getTime(),
-  //   exp: new Date().setMinutes(new Date().getMinutes() + 30)
-  // }, tokenSecret);
 }
-module.exports = { signAccessToken, verifyAccessToken, signRefreshToken };
+
+const verifyRefreshToken = async (refreshToken) => {
+  return new Promise((resolve, reject) => {
+    JWT.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, payload) => {
+      if (err) {
+        return reject(err);
+      }
+      if (payload.email) { // check name token in rediss === email and compare vs refreshToken headers
+        const reply = await redis.getValueByKeyRedis(payload.email);
+
+        if (reply) {
+          return resolve(payload)
+        }
+        return reject(createError.Unauthorized());
+      }
+      return reject(createError.InternalServerError());
+
+    })
+  })
+
+}
+module.exports = { signAccessToken, verifyAccessToken, signRefreshToken, verifyRefreshToken };

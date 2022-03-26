@@ -20,7 +20,6 @@ module.exports.routes = {
   ***************************************************************************/
   //  nodemon -w api -w config
   '/': { view: 'pages/homepage' },
-  
   'Post /asset/getlistProfessasset': {
     controller: 'ProfessassetController',
     action: 'getlistProfessasset',
@@ -65,9 +64,17 @@ module.exports.routes = {
       allowCredentials: false
     }
   },
-  'POST /secret': {
+  'POST /refresh-token': {
     controller: 'UserController',
-    action: 'secret',
+    action: 'refreshToken',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
+  },
+  'POST /logout': {
+    controller: 'UserController',
+    action: 'logOut',
     cors: {
       allowOrigins: ['http://localhost:3000'],
       allowCredentials: false
