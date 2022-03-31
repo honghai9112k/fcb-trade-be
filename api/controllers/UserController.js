@@ -24,7 +24,7 @@ module.exports = {
         const accessToken = await jwToken.signAccessToken(email)
         const refreshToken = await jwToken.signRefreshToken(email)
 
-        const check = await redis.getValueByKeyRedis('foo');
+        // const check = await redis.getValueByKeyRedis('foo');
 
         await redis.addRedis(email, refreshToken, (24 * 60 * 60))
         res.setHeader('RefreshToken', refreshToken)
@@ -32,7 +32,7 @@ module.exports = {
 
         return res.json({
             status: 200,
-            message: 'Success',
+            message: 'Success. Đăng nhập thành công.',
             authorization: accessToken,
             refreshToken: refreshToken,
         });
@@ -48,8 +48,9 @@ module.exports = {
             const refrToken = await jwToken.signRefreshToken(email)
             await redis.addRedis('RefreshToken', refrToken, 10)
             res.json({
-                accessToken,
-                refrToken
+                status: 200,
+                authorization: accessToken,
+                refreshToken: refrToken,
             })
         } catch (err) {
             res.json({
@@ -77,8 +78,8 @@ module.exports = {
             })
         } catch (error) {
             res.json({
-                status: err.status || 500,
-                message: err.message
+                status: error.status || 500,
+                message: error.message
             })
         }
     }

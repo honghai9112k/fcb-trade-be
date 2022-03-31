@@ -27,7 +27,6 @@ const signAccessToken = async (email) => {
 
 // Verifies token on a request
 const verifyAccessToken = async (req, res, next) => {
-
   if (!req.headers['authorization']) {
     return res.json({
       status: 500,
@@ -38,7 +37,7 @@ const verifyAccessToken = async (req, res, next) => {
   const authHeader = req.headers['authorization']
   const bearerToken = authHeader.split(' ');
   const token = bearerToken[1];
-
+  
   JWT.verify(
     token, // The token to be verified
     process.env.ACCESS_TOKEN_SECRET, // Same token we used to sign

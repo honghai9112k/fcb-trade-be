@@ -52,28 +52,6 @@ module.exports.http = {
     * https://sailsjs.com/config/http#?customizing-the-body-parser             *
     *                                                                          *
     ***************************************************************************/
-
-    // bodyParser: (function _configureBodyParser(){
-    //   var skipper = require('skipper');
-    //   var middlewareFn = skipper({ strict: true });
-    //   return middlewareFn;
-    // })(),
-    // foobar: (function () {
-    //   console.log("config of Middleware is called")
-    //   return async function (req, res, next) {
-    //     next(createError.NotFound('This route is not exist.'))
-    //   }
-    // })(),
-    // formatErr: (function () {
-    //   console.log('format');
-    //   return async function (err, req, res, next) {
-    //     console.log("installed customMiddleware is used")
-    //     res.json({
-    //       status: err.status || 500,
-    //       message: err.message
-    //     })
-    //   }
-    // })()
   }
 
 };
