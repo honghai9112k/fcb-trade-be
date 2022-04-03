@@ -23,6 +23,10 @@ module.exports.policies = {
     'signIn': true,
     'refreshToken': true // We dont need authorization here, allowing public access
   },
+  'AuthController': { // Name of your controller
+    'google': true,
+    'callback': true,
+  },
   'ProfessassetController': {
    
   },

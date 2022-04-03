@@ -8,6 +8,9 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
+// const passport = require("passport");
+const CLIENT_URL = "http://localhost:3000";
+
 module.exports.routes = {
 
   /***************************************************************************
@@ -54,7 +57,11 @@ module.exports.routes = {
   },
   'POST /signin': {
     controller: 'UserController',
-    action: 'signIn'
+    action: 'signIn',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
   },
   'POST /signup': {
     controller: 'UserController',
@@ -79,7 +86,64 @@ module.exports.routes = {
       allowOrigins: ['http://localhost:3000'],
       allowCredentials: false
     }
-  }
+  },
+
+
+
+
+
+
+
+  'GET /auth/login/success': (req, res) => {
+    if (req.user) {
+      res.status(200).json({
+        success: true,
+        message: "successfull",
+        user: req.user,
+        //   cookies: req.cookies
+      });
+    }
+  },
+
+  'GET /auth/login/failed': (req, res) => {
+    res.status(401).json({
+      success: false,
+      message: "failure",
+    });
+  },
+
+  'GET /auth/logout': (req, res) => {
+    req.logout();
+    res.redirect(CLIENT_URL);
+  },
+
+  // 'GET auth/google':  passport.authenticate("google", { scope: ["profile"] }) ,
+  'GET /auth/google': {
+    controller: 'AuthController',
+    action: 'google',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
+  }, 
+
+  'GET /auth/google/callback':  {
+    controller: 'AuthController',
+    action: 'callback',
+    cors: {
+      allowOrigins: ['http://localhost:3000'],
+      allowCredentials: false
+    }
+  }, 
+
+
+
+
+
+
+
+
+
 
   /***************************************************************************
   *                                                                          *

@@ -1,5 +1,4 @@
-'use strict';
-const createError = require('http-errors');
+
 module.exports = (req, res, next) => {
   // let token;
   // console.log(req.headers);
@@ -23,5 +22,4 @@ module.exports = (req, res, next) => {
   // });
 
 jwToken.verifyAccessToken(req, res, next);
-  
 };

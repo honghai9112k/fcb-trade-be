@@ -8,8 +8,6 @@
  * For more information on configuration, check out:
  * https://sailsjs.com/config/http
  */
-
-const createError = require('http-errors');
 module.exports.http = {
 
   /****************************************************************************
@@ -30,20 +28,20 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
-    // order: [
-    //   'cookieParser',
-    //   'session',
-    //   'bodyParser',
-    //   'compress',
-    //   'poweredBy',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    // ],
-    // order: [
-    //   'foobar',
-    //   'formatErr'
-    // ],
+    // session: cookieSession({ name: "session", keys: ["Hai"], maxAge: 24 * 60 * 60 * 100 }),
+    order: [
+      'cookieParser',
+      'session',
+      'passportInit',
+      'passportSession',
+      'bodyParser',
+      'compress',
+      'poweredBy',
+      '$custom',
+      'router',
+      'www',
+      'favicon',
+    ],
 
     /***************************************************************************
     *                                                                          *
@@ -52,6 +50,9 @@ module.exports.http = {
     * https://sailsjs.com/config/http#?customizing-the-body-parser             *
     *                                                                          *
     ***************************************************************************/
+    passportInit: require('passport').initialize(),
+
+    passportSession: require('passport').session(),
   }
 
 };
