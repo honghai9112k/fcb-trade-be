@@ -59,5 +59,10 @@ module.exports.datastores = {
     // Other available low-level options can also be configured here.
     // (see below for more information)
   },
+//   oracleConn: {  
+//     connectString: '192.168.201.100/xe',  
+//     user: 'myusername',  
+//     password: 'mypassword'  
+// },
 
 };

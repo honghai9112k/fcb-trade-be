@@ -22,4 +22,5 @@ module.exports = (req, res, next) => {
   // });
 
 jwToken.verifyAccessToken(req, res, next);
+
 };

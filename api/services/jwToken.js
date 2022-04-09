@@ -2,7 +2,7 @@
 
 const JWT = require('jsonwebtoken');
 const createError = require('http-errors');
-const { addRedis } = require('./redis');
+const { addStringRedis } = require('./redis');
 
 // Generates a token from supplied payload
 const signAccessToken = async (email) => {

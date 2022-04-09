@@ -21,6 +21,7 @@ module.exports.policies = {
   '*': ['isAuthorized'], // Everything resctricted here
   'UserController': { // Name of your controller
     'signIn': true,
+    'googleLogin': true,
     'refreshToken': true // We dont need authorization here, allowing public access
   },
   'AuthController': { // Name of your controller

@@ -1,9 +1,19 @@
-
+const { OAuth2Client } = require('google-auth-library');
+const CLIENT_ID = "204722963832-8liiqbolck5p1jfi7ksnjv9a880uk8t5.apps.googleusercontent.com"
+const client = new OAuth2Client(CLIENT_ID);
+var util = require('util');
 
 // const User = require('../models/User')
 const JWT = require("jsonwebtoken")
 const createError = require('http-errors');
+var keys = {
+    // token: 'tokens:%s',
+    client: 'clients:%s',
+    // refreshToken: 'refresh_tokens:%s',
+    // grantTypes: 'clients:%s:grant_types',
+    // user: 'users:%s'
 
+};
 module.exports = {
     signIn: async (req, res) => {
 
@@ -26,7 +36,7 @@ module.exports = {
 
         // const check = await redis.getValueByKeyRedis('foo');
 
-        await redis.addRedis(email, refreshToken, (24 * 60 * 60))
+        await redis.addStringRedis(email, refreshToken, (24 * 60 * 60))
         res.setHeader('RefreshToken', refreshToken)
         res.setHeader('Authorization', accessToken)
 
@@ -46,7 +56,7 @@ module.exports = {
             const { email } = await jwToken.verifyRefreshToken(refreshtoken)
             const accessToken = await jwToken.signAccessToken(email)
             const refrToken = await jwToken.signRefreshToken(email)
-            await redis.addRedis('RefreshToken', refrToken, 10)
+            await redis.addStringRedis('RefreshToken', refrToken, 10)
             res.json({
                 status: 200,
                 authorization: accessToken,
@@ -75,6 +85,35 @@ module.exports = {
             res.json({
                 status: 200,
                 message: 'LogOut!'
+            })
+        } catch (error) {
+            res.json({
+                status: error.status || 500,
+                message: error.message
+            })
+        }
+    },
+    googleLogin: async (req, res) => {
+        try {
+            const token = req.body.tokenId;
+            let profileObj = {};
+            async function verify() {
+                const ticket = await client.verifyIdToken({
+                    idToken: token,
+                    audience: CLIENT_ID,
+                });
+                const payload = ticket.getPayload();
+                const userid = payload['sub'];
+                await redis.addAllHashRedis(util.format(keys.client, userid), payload, 24*60*60*60)
+                const data = await redis.getClientHashRedis('118109049223155766787')
+                console.log('data',data);
+                // const obj = JSON.parse(await redis.getValueByKeyRedis('profileObj'))
+                // console.log(obj.email);
+            }
+            verify();
+            return res.json({
+                status: 200,
+                message: 'Success!'
             })
         } catch (error) {
             res.json({

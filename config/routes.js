@@ -88,7 +88,15 @@ module.exports.routes = {
     }
   },
 
-
+// Google login
+'POST /api/google-login': {
+  controller: 'UserController',
+  action: 'googleLogin',
+  cors: {
+    allowOrigins: ['http://localhost:3000'],
+    allowCredentials: false
+  }
+},
 
 
 
